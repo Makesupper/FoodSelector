@@ -1,4 +1,7 @@
 import React from 'react';
+import { Star } from 'lucide-react';
+
+const REPO_URL = 'https://github.com/Makesupper/FoodSelector';
 
 interface TopHeaderProps {
   selectedCount: number;
@@ -56,8 +59,19 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           </button>
         </nav>
 
-        {/* Zone 3: Single primary action */}
-        <div className="shrink-0">
+        {/* Zone 3: Star repo & Primary action */}
+        <div className="flex items-center gap-2 shrink-0">
+          <a
+            href={REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="在 GitHub 上 Star 源项目"
+            className="px-3 py-2 text-sm font-medium text-[#1C1917] bg-white hover:bg-[#F2F0EC] border border-[#D6D3CD] active:scale-[0.98] transition-all rounded-lg inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C23B22] focus-visible:ring-offset-2"
+          >
+            <Star className="w-3.5 h-3.5 text-[#C23B22]" aria-hidden="true" />
+            <span className="hidden sm:inline">Star 源项目</span>
+            <span className="sm:hidden">Star</span>
+          </a>
           <button
             type="button"
             onClick={onJumpStudio}
