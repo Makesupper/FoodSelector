@@ -22,7 +22,7 @@ test('catalog covers all 34 Chinese provincial-level regions with 3 dishes each'
     assert.equal(dishes.length, 3, `${province.name} should have 3 dishes`);
     for (const d of dishes) {
       assert.ok(d.name.length > 0);
-      assert.ok(d.image.startsWith('/src/assets/dishes/'));
+      assert.ok(d.image.includes('src/assets/dishes/'));
     }
   }
 

@@ -57,6 +57,7 @@ export const PROVINCES: ProvinceMeta[] = [
 ];
 
 const provinceMap = new Map<string, ProvinceMeta>(PROVINCES.map((p) => [p.id, p]));
+const BASE_URL = (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/';
 
 function dish(id: string, provinceId: string, name: string, note: string): FoodItem {
   const meta = provinceMap.get(provinceId);
@@ -70,7 +71,7 @@ function dish(id: string, provinceId: string, name: string, note: string): FoodI
     provinceName: meta.name,
     region: meta.region,
     regionLabel: meta.regionLabel,
-    image: `/src/assets/dishes/${id}.jpg`,
+    image: `${BASE_URL}src/assets/dishes/${id}.jpg`,
     note,
   };
 }
