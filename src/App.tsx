@@ -147,10 +147,10 @@ export default function App() {
         <section className="pb-6 border-b border-[#E7E5E0] flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div className="max-w-2xl">
             <h1 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[#1C1917] [text-wrap:balance]">
-              中国 34 省日常风味 · 今天吃什么 GIF 选择器
+              中国 34 省风味 & 洋快餐 · 今天吃什么 GIF 选择器
             </h1>
             <p className="mt-2 text-sm text-[#57534E] leading-relaxed">
-              每省甄选 3 道日常代表食物，共 <span className="tabular-nums-mono font-medium text-[#1C1917]">{allFoods.length}</span> 道可选。挑出想吃的菜品，或自行添加家常私房菜，一键生成带标题与菜名的动态 GIF，截图决定今天吃什么。
+              收录全国 34 省各 3 道代表美食，以及麦当劳、肯德基、汉堡王招牌洋快餐，共 <span className="tabular-nums-mono font-medium text-[#1C1917]">{allFoods.length}</span> 道可选。挑出想吃的菜品，或自行添加家常私房菜，一键生成带标题与菜名的动态 GIF，截图决定今天吃什么。
             </p>
           </div>
 
@@ -212,10 +212,10 @@ export default function App() {
 
         {/* Main 2-Column Workspace */}
         <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: 34-Province Catalog */}
+          {/* Left Column: Catalog */}
           <section
             id="catalog"
-            aria-label="全国日常美食图鉴"
+            aria-label="美食图鉴"
             className={`lg:col-span-8 space-y-6 ${
               mobileTab === 'studio' ? 'hidden lg:block' : 'block'
             }`}
@@ -229,14 +229,14 @@ export default function App() {
                     className="w-4 h-4 text-[#78716C] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
                   />
                   <label htmlFor="food-search-input" className="sr-only">
-                    搜索省份或食物名称
+                    搜索省份、品牌或食物名称
                   </label>
                   <input
                     id="food-search-input"
                     type="search"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="搜索省份或食物，如：螺蛳粉、四川、肉夹馍..."
+                    placeholder="搜索省份、品牌或食物，如：螺蛳粉、麦当劳、皇堡..."
                     className="w-full h-10 pl-10 pr-9 text-sm bg-white border border-[#E7E5E0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C23B22]/25 focus:border-[#C23B22]"
                   />
                   {searchQuery && (
@@ -260,7 +260,7 @@ export default function App() {
               {/* Region Filter Tabs */}
               <div
                 role="group"
-                aria-label="按中国地理大区筛选"
+                aria-label="按地区与分类筛选"
                 className="flex items-center gap-1.5 overflow-x-auto thin-scroll pb-1"
               >
                 {REGIONS.map((reg) => {
@@ -299,7 +299,7 @@ export default function App() {
                 <p className="text-xs text-[#78716C]">
                   {activeRegion === 'custom'
                     ? '点击下方按钮添加你常吃的家常菜或外卖，立即加入 GIF 选择器。'
-                    : '试试换个省份名，或者直接把这道菜添加到自定义列表。'}
+                    : '试试换个省份、品牌或菜名，或者直接把这道菜添加到自定义列表。'}
                 </p>
                 <div className="pt-2 flex items-center justify-center gap-3">
                   {searchQuery && (
@@ -393,8 +393,8 @@ export default function App() {
 
       <footer className="mt-12 border-t border-[#E7E5E0] py-6">
         <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#78716C]">
-          <span>食选 · 中国 34 省日常美食 GIF 选择器</span>
-          <span>12 张多宫格拼图智能分割 · 全程本地浏览器合成 GIF</span>
+          <span>食选 · 中国 34 省日常美食 & 洋快餐 GIF 选择器</span>
+          <span>本地图片与精美文字色卡 · 全程浏览器本地合成 GIF</span>
         </div>
       </footer>
 

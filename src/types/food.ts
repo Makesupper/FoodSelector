@@ -7,6 +7,7 @@ export type RegionKey =
   | 'south'
   | 'southwest'
   | 'northwest'
+  | 'fastfood'
   | 'custom';
 
 export interface RegionInfo {

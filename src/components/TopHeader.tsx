@@ -38,7 +38,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             onClick={onJumpCatalog}
             className="hover:text-[#1C1917] transition-colors whitespace-nowrap shrink-0 py-1 border-b border-transparent hover:border-[#1C1917] cursor-pointer"
           >
-            全国美食图鉴
+            全部美食图鉴
           </button>
           <button
             type="button"

@@ -10,12 +10,12 @@ import {
   validateCustomFoodDraft,
 } from './foodCatalog';
 
-test('catalog covers all 34 Chinese provincial-level regions with 3 dishes each', () => {
-  assert.equal(PROVINCES.length, 34);
-  assert.equal(BUILTIN_FOODS.length, 102);
+test('catalog covers all 34 Chinese provincial-level regions plus 3 fast food brands with 3 items each', () => {
+  assert.equal(PROVINCES.length, 37);
+  assert.equal(BUILTIN_FOODS.length, 111);
 
   const uniqueIds = new Set(BUILTIN_FOODS.map((f) => f.id));
-  assert.equal(uniqueIds.size, 102);
+  assert.equal(uniqueIds.size, 111);
 
   for (const province of PROVINCES) {
     const dishes = BUILTIN_FOODS.filter((f) => f.provinceId === province.id);
@@ -35,12 +35,22 @@ test('filterFoods filters accurately by region and search keyword', () => {
   const southwest = filterFoods(BUILTIN_FOODS, 'southwest', '');
   assert.equal(southwest.length, 15); // 5 provinces * 3
 
+  const fastfood = filterFoods(BUILTIN_FOODS, 'fastfood', '');
+  assert.equal(fastfood.length, 9); // 3 brands * 3
+
   const luosifen = filterFoods(BUILTIN_FOODS, 'all', '螺蛳粉');
   assert.equal(luosifen.length, 1);
   assert.equal(luosifen[0].provinceName, '广西');
 
   const sichuanSearch = filterFoods(BUILTIN_FOODS, 'all', '四川');
   assert.equal(sichuanSearch.length, 3);
+
+  const mcdSearch = filterFoods(BUILTIN_FOODS, 'all', '麦当劳');
+  assert.equal(mcdSearch.length, 3);
+
+  const whopperSearch = filterFoods(BUILTIN_FOODS, 'fastfood', '皇堡');
+  assert.equal(whopperSearch.length, 1);
+  assert.equal(whopperSearch[0].provinceName, '汉堡王');
 });
 
 test('groupFoodsByProvince preserves province grouping and places custom first', () => {
@@ -49,10 +59,11 @@ test('groupFoodsByProvince preserves province grouping and places custom first',
     1000
   );
   const groups = groupFoodsByProvince([customDish, ...BUILTIN_FOODS]);
-  assert.equal(groups.length, 35);
+  assert.equal(groups.length, 38);
   assert.equal(groups[0].provinceId, 'custom');
   assert.equal(groups[1].provinceId, 'beijing');
   assert.equal(groups[1].items.length, 3);
+  assert.equal(groups[groups.length - 1].provinceId, 'burgerking');
 });
 
 test('validateCustomFoodDraft rejects empty names and accepts valid drafts', () => {

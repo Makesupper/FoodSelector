@@ -425,7 +425,7 @@ export const GifStudio: React.FC<GifStudioProps> = ({
               }}
               className="w-3.5 h-3.5 accent-[#C23B22] rounded cursor-pointer"
             />
-            显示省份
+            显示地区/品牌
           </label>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import type { CustomCoverTone, FoodItem, ProvinceMeta, RegionInfo } from '../types/food';
 
 export const REGIONS: RegionInfo[] = [
-  { key: 'all', label: '全国 34 省' },
+  { key: 'all', label: '全部美食' },
   { key: 'north', label: '华北' },
   { key: 'northeast', label: '东北' },
   { key: 'east', label: '华东' },
@@ -9,6 +9,7 @@ export const REGIONS: RegionInfo[] = [
   { key: 'south', label: '华南' },
   { key: 'southwest', label: '西南' },
   { key: 'northwest', label: '西北' },
+  { key: 'fastfood', label: '洋快餐' },
   { key: 'custom', label: '自定义' },
 ];
 
@@ -54,12 +55,22 @@ export const PROVINCES: ProvinceMeta[] = [
   { id: 'qinghai', name: '青海', region: 'northwest', regionLabel: '西北' },
   { id: 'ningxia', name: '宁夏', region: 'northwest', regionLabel: '西北' },
   { id: 'xinjiang', name: '新疆', region: 'northwest', regionLabel: '西北' },
+  // 洋快餐 (3)
+  { id: 'mcdonalds', name: '麦当劳', region: 'fastfood', regionLabel: '洋快餐' },
+  { id: 'kfc', name: '肯德基', region: 'fastfood', regionLabel: '洋快餐' },
+  { id: 'burgerking', name: '汉堡王', region: 'fastfood', regionLabel: '洋快餐' },
 ];
 
 const provinceMap = new Map<string, ProvinceMeta>(PROVINCES.map((p) => [p.id, p]));
 const BASE_URL = (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/';
 
-function dish(id: string, provinceId: string, name: string, note: string): FoodItem {
+function dish(
+  id: string,
+  provinceId: string,
+  name: string,
+  note: string,
+  options?: { image?: string; coverTone?: CustomCoverTone }
+): FoodItem {
   const meta = provinceMap.get(provinceId);
   if (!meta) {
     throw new Error(`Unknown provinceId: ${provinceId}`);
@@ -71,8 +82,9 @@ function dish(id: string, provinceId: string, name: string, note: string): FoodI
     provinceName: meta.name,
     region: meta.region,
     regionLabel: meta.regionLabel,
-    image: `${BASE_URL}src/assets/dishes/${id}.jpg`,
+    image: options?.image ?? `${BASE_URL}src/assets/dishes/${id}.jpg`,
     note,
+    coverTone: options?.coverTone,
   };
 }
 
@@ -213,6 +225,18 @@ export const BUILTIN_FOODS: FoodItem[] = [
   dish('xj-dapanji', 'xinjiang', '大盘鸡', '香辣土豆炖鸡垫皮带面'),
   dish('xj-zhuafan', 'xinjiang', '羊肉抓饭', '黄萝卜葡萄干油润焖羊肉饭'),
   dish('xj-yangrouchuan', 'xinjiang', '烤羊肉串配馕', '炭火孜然大串配芝麻烤馕'),
+  // 麦当劳
+  dish('mcd-bigmac', 'mcdonalds', '巨无霸', '双层纯牛肉吉士配特调酱'),
+  dish('mcd-banshao', 'mcdonalds', '板烧鸡腿堡', '煎烤嫩鸡腿排配黑椒酱生菜'),
+  dish('mcd-mcnuggets', 'mcdonalds', '麦乐鸡配薯条', '酥脆鸡块配金黄脆薯条'),
+  // 肯德基
+  dish('kfc-zinger', 'kfc', '香辣鸡腿堡', '酥脆香辣鸡腿肉配生菜酱'),
+  dish('kfc-original', 'kfc', '吮指原味鸡', '经典香料金黄脆皮炸鸡'),
+  dish('kfc-roll', 'kfc', '老北京鸡肉卷', '脆鸡柳黄瓜葱丝卷面饼'),
+  // 汉堡王
+  dish('bk-whopper', 'burgerking', '皇堡', '经典火烤牛肉配鲜蔬酸黄瓜'),
+  dish('bk-angus', 'burgerking', '安格斯厚牛堡', '厚切火烤牛排配芝士培根'),
+  dish('bk-chicken', 'burgerking', '霸王鸡条配薯条', '酥脆长鸡条配粗切金黄薯条'),
 ];
 
 export const DEFAULT_SELECTED_IDS: string[] = [

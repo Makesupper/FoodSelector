@@ -1,6 +1,6 @@
 {
   "name": "食选 · 今天吃什么选择器",
-  "description": "收录中国34个省级行政区共102道日常代表美食，支持自定义添加食物并一键生成“今天吃什么选择器”动态GIF图。",
+  "description": "收录中国34个省级行政区共102道日常代表美食及麦当劳、肯德基、汉堡王9款洋快餐，共111道可选，支持自定义添加食物并一键生成“今天吃什么选择器”动态GIF图。",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -179,7 +179,7 @@ export const AddCustomFoodModal: React.FC<AddCustomFoodModalProps> = ({
                 htmlFor="custom-food-province"
                 className="block text-sm font-medium text-[#1C1917] mb-1.5"
               >
-                所属地区
+                所属地区 / 分类
               </label>
               <select
                 id="custom-food-province"
