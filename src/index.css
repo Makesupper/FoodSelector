@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif-editorial: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  --font-sans-body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono-num: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans-body);
+    scroll-behavior: smooth;
+    color: #1c1917;
+    background-color: #f8f7f4;
+  }
+
+  h1, h2, .font-editorial {
+    font-family: var(--font-serif-editorial);
+  }
+}
+
+.tabular-nums-mono {
+  font-family: var(--font-mono-num);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle thin scrollbar for horizontal filter bars & studio pool */
+.thin-scroll::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scroll::-webkit-scrollbar-thumb {
+  background-color: #d6d3cd;
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
